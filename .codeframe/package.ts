@@ -1,7 +1,4 @@
-import { mkdirSync, existsSync, copyFileSync } from "node:fs";
-
 import {
-  BuildArchitectures,
   BuildType,
   HeaderList,
   OUTPUT_DIR,
@@ -17,16 +14,23 @@ export const build = (cwd: string = process.cwd()): BuildType => {
   const STB_FONT_INSTALL = resolve(INSTALL_DIR, "stb-font");
   const STB_AUDIO_INSTALL = resolve(INSTALL_DIR, "stb-audio");
 
+  const STB_IMAGE_INCLUDE = resolve(INSTALL_DIR, "stb-image", "include");
+  const STB_FONT_INCLUDE = resolve(INSTALL_DIR, "stb-font", "include");
+  const STB_AUDIO_INCLUDE = resolve(INSTALL_DIR, "stb-audio", "include");
+
   const stbLibs: HeaderList = {
     type: "headers",
     libs: {
-      [STB_IMAGE_INSTALL]: [
+      [STB_IMAGE_INSTALL]: [".codeframe/stb-image-config/lib.json"],
+      [STB_FONT_INSTALL]: [".codeframe/stb-font-config/lib.json"],
+      [STB_AUDIO_INSTALL]: [".codeframe/stb-audio-config/lib.json"],
+      [STB_IMAGE_INCLUDE]: [
         "stb_image.h",
         "stb_image_write.h",
         "stb_image_resize2.h",
       ],
-      [STB_FONT_INSTALL]: ["stb_truetype.h", "stb_rect_pack.h"],
-      [STB_AUDIO_INSTALL]: ["stb_vorbis.c", "stb_hexwave.h"],
+      [STB_FONT_INCLUDE]: ["stb_truetype.h", "stb_rect_pack.h"],
+      [STB_AUDIO_INCLUDE]: ["stb_vorbis.c", "stb_hexwave.h"],
     },
   };
 
