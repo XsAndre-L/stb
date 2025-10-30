@@ -3,7 +3,7 @@ import {
   HeaderList,
   OUTPUT_DIR,
 } from "../../../src/types/package-config.ts";
-import { runPackageAction } from "../../../src/packages.ts";
+import { runPackageAction } from "../../../src/commands/packages.ts";
 
 import { resolve } from "node:path";
 import { argv } from "node:process";
